@@ -1,4 +1,5 @@
-﻿using BeyondNet.Cqrs.Interfaces;
+﻿using BeyondNet.Cqrs.Models;
+using BeyondNet.Cqrs.Queries.Interfaces;
 
 namespace BeyondNet.Cqrs.Impl
 {

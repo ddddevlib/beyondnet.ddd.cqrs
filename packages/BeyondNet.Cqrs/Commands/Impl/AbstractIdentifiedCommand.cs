@@ -1,11 +1,11 @@
-﻿namespace BeyondNet.Cqrs.Impl
+﻿namespace BeyondNet.Cqrs.Commands.Impl
 {
-    public class IdentifiedCommand<T, R> : IRequest<R>
+    public class AbstractIdentifiedCommand<T, R> : IRequest<R>
        where T : IRequest<R>
     {
         public T Command { get; }
         public Guid Id { get; }
-        public IdentifiedCommand(T command, Guid id)
+        public AbstractIdentifiedCommand(T command, Guid id)
         {
             Command = command;
             Id = id;

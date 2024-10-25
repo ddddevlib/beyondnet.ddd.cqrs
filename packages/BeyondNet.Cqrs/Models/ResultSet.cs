@@ -1,6 +1,6 @@
-﻿namespace BeyondNet.Cqrs.Impl
+﻿namespace BeyondNet.Cqrs.Models
 {
-    public class ResultSet 
+    public class ResultSet
     {
         public bool IsError { get; set; } = false;
         public bool IsSuccess { get; private set; } = false;
