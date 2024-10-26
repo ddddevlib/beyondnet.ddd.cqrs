@@ -7,14 +7,14 @@ namespace BeyondNet.Cqrs.Events.Impl
     {
         public readonly ILogger<AbstractEventHandler<TEvent>> logger;
 
-        protected abstract Task Handle(TEvent @event);
+        public abstract Task HandleOn(TEvent @event);
         
         protected AbstractEventHandler(ILogger<AbstractEventHandler<TEvent>> logger)
         {
             this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
-        public Task On(TEvent @event)
+        public async Task On(TEvent @event)
         {
             logger.LogInformation($"Handling event {@event.GetType().Name}");
 
@@ -22,11 +22,11 @@ namespace BeyondNet.Cqrs.Events.Impl
             {
                 logger.LogInformation($"Handling event {@event.GetType().Name}");
 
-                Handle(@event);
+                await HandleOn(@event);
 
                 logger.LogInformation($"Event handled {@event.GetType().Name}");
 
-                return Task.CompletedTask;
+                return;
             }
             catch (Exception ex)
             {
@@ -36,7 +36,6 @@ namespace BeyondNet.Cqrs.Events.Impl
             finally
             {
                 logger.LogInformation($"Event handled {@event.GetType().Name}");
-
             }
         }
     }
