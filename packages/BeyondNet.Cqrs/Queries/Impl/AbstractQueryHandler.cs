@@ -1,7 +1,4 @@
-﻿using BeyondNet.Cqrs.Models;
-using BeyondNet.Cqrs.Queries.Interfaces;
-
-namespace BeyondNet.Cqrs.Impl
+﻿namespace BeyondNet.Cqrs.Impl
 {
     public abstract class AbstractQueryHandler<TQuery, TResult> : IQueryHandler<TQuery, TResult>
             where TQuery : IQuery<TResult>

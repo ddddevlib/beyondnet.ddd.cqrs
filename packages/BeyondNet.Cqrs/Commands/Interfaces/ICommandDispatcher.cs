@@ -1,11 +1,9 @@
-﻿using BeyondNet.Cqrs.Commands.Impl;
-
-namespace BeyondNet.Cqrs.Commands.Interfaces
+﻿namespace BeyondNet.Cqrs.Commands.Interfaces
 {
     public interface ICommandDispatcher
     {
-        void RegisterHandler<T>(Func<T, Task> handler) where T : AbstractCommand;
+        void RegisterHandler<TCommand>(Func<TCommand, Task> handler) where TCommand : ICommand;
 
-        Task SendAsync(AbstractCommand command);
+        Task SendAsync(ICommand command);
     }
 }

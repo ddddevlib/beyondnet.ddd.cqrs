@@ -1,19 +1,20 @@
-﻿using BeyondNet.Cqrs.Commands.Interfaces;
-
-namespace BeyondNet.Cqrs.Commands.Impl
+﻿namespace BeyondNet.Cqrs.Commands.Impl
 {
-    public abstract class AbstractCommandHandler<TCommand> : ICommandHandler<TCommand> where TCommand : AbstractCommand, new()
+
+    public abstract class AbstractCommandHandler<TCommand, TResult> : ICommandHandler<TCommand, TResult>
+        where TCommand : ICommand
+        where TResult : ResultSet
     {
-        public readonly ILogger<AbstractCommandHandler<TCommand>> logger;
+        public readonly ILogger<AbstractCommandHandler<TCommand, TResult>> logger;
 
-        public abstract Task Handle(TCommand command, CancellationToken cancellationToken);
+        public abstract Task<TResult> Handle(TCommand command, CancellationToken cancellationToken);
 
-        public AbstractCommandHandler(ILogger<AbstractCommandHandler<TCommand>> logger)
+        public AbstractCommandHandler(ILogger<AbstractCommandHandler<TCommand, TResult>> logger)
         {
             this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
-        public async Task HandleAsync(TCommand command, CancellationToken cancellationToken)
+        public async Task<TResult> HandleAsync(TCommand command, CancellationToken cancellationToken)
         {
             logger.LogInformation($"Handling command {command.GetType().Name} with Id {command.Id}");
 
@@ -21,9 +22,11 @@ namespace BeyondNet.Cqrs.Commands.Impl
             {
                 logger.LogInformation($"Handling command {command.GetType().Name} with Id {command.Id}");
 
-                await Handle(command, cancellationToken);
+                var result = await Handle(command, cancellationToken);
 
                 logger.LogInformation($"Command {command.GetType().Name} with Id {command.Id} handled successfully");
+
+                return result;
             }
             catch (Exception ex)
             {
@@ -37,4 +40,5 @@ namespace BeyondNet.Cqrs.Commands.Impl
             }
         }
     }
+   
 }

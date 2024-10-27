@@ -1,9 +1,6 @@
-﻿using BeyondNet.Cqrs.Core.Interfaces;
-
-namespace BeyondNet.Cqrs.Commands.Interfaces
+﻿namespace BeyondNet.Cqrs.Commands.Interfaces
 {
-    public interface ICommand : IMessage
+    public interface ICommand : IRequest<ResultSet>, IMessage
     {
-        public DateTime SentAt { get; }
     }
 }

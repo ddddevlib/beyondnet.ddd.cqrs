@@ -1,3 +1,9 @@
 ﻿global using MediatR;
 global using Microsoft.Extensions.Logging;
 global using System.Text.Json;
+global using BeyondNet.Cqrs.Core.Interfaces;
+global using BeyondNet.Cqrs.Models;
+global using BeyondNet.Cqrs.Commands.Interfaces;
+global using BeyondNet.Cqrs.Queries.Interfaces;
+global using BeyondNet.Cqrs.Events.Interfaces;
+global using BeyondNet.Cqrs.Queries.Impl;

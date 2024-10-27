@@ -1,13 +1,11 @@
-﻿using BeyondNet.Cqrs.Commands.Interfaces;
-
-namespace BeyondNet.Cqrs.Commands.Impl
+﻿namespace BeyondNet.Cqrs.Commands.Impl
 {
     public class CommandDispatcher : ICommandDispatcher
     {
 
-        private readonly Dictionary<Type, Func<AbstractCommand, Task>> _handlers = new();
+        private readonly Dictionary<Type, Func<ICommand, Task>> _handlers = new();
 
-        public void RegisterHandler<T>(Func<T, Task> handler) where T : AbstractCommand
+        public void RegisterHandler<T>(Func<T, Task> handler) where T : ICommand
         {
             if (handler is null)
             {
@@ -20,7 +18,7 @@ namespace BeyondNet.Cqrs.Commands.Impl
             _handlers.Add(typeof(T), command => handler((T)command));
         }
 
-        public async Task SendAsync(AbstractCommand command)
+        public async Task SendAsync(ICommand command)
         {
             if (command is null)
             {
