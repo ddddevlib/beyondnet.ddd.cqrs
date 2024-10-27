@@ -6,14 +6,14 @@ namespace BeyondNet.Cqrs.Commands.Impl
     {
         public readonly ILogger<AbstractCommandHandler<TCommand>> logger;
 
-        public abstract Task Handle(TCommand command);
+        public abstract Task Handle(TCommand command, CancellationToken cancellationToken);
 
         public AbstractCommandHandler(ILogger<AbstractCommandHandler<TCommand>> logger)
         {
             this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
-        public async Task HandleAsync(TCommand command)
+        public async Task HandleAsync(TCommand command, CancellationToken cancellationToken)
         {
             logger.LogInformation($"Handling command {command.GetType().Name} with Id {command.Id}");
 
@@ -21,7 +21,7 @@ namespace BeyondNet.Cqrs.Commands.Impl
             {
                 logger.LogInformation($"Handling command {command.GetType().Name} with Id {command.Id}");
 
-                await Handle(command);
+                await Handle(command, cancellationToken);
 
                 logger.LogInformation($"Command {command.GetType().Name} with Id {command.Id} handled successfully");
             }
