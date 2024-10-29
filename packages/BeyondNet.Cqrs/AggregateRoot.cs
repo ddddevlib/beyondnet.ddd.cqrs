@@ -9,7 +9,7 @@ namespace BeyondNet.Cqrs
     /// </summary>
     /// <typeparam name="TAggegateRoot">The type of the aggregate root.</typeparam>
     /// <typeparam name="TProps">The type of the properties of the aggregate root.</typeparam>
-    public abstract class AggregateRoot<TAggegateRoot, TProps> : IAggregateRoot
+    public abstract class AggregateRoot : IAggregateRoot
     {
 
         private List<IDomainEvent> _domainEvents;
