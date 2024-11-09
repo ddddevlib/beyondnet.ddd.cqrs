@@ -14,8 +14,8 @@
     <PackageTags>cqrs</PackageTags>
     <PackageReleaseNotes>CQRS Extension for BeyondNet.Ddd</PackageReleaseNotes>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
-	<AssemblyVersion>1.13.0</AssemblyVersion>
-	<VersionPrefix>1.13.0</VersionPrefix>
+	<AssemblyVersion>1.14.0</AssemblyVersion>
+	<VersionPrefix>1.14.0</VersionPrefix>
   </PropertyGroup>
 
   <ItemGroup>
@@ -30,7 +30,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="BeyondNet.Ddd" Version="1.14.0" />
+    <PackageReference Include="BeyondNet.Ddd" Version="1.15.0" />
     <PackageReference Include="MediatR" Version="12.4.1" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.2" />
   </ItemGroup>
